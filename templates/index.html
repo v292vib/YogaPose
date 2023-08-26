@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Run Python Script</title>
+</head>
+<body>
+    <h1>Run Python Script</h1>
+    
+    <form action="/run_script" method="POST">
+        <button type="submit">Run Script</button>
+    </form>
+    
+    {% if result %}
+        <p>{{ result }}</p>
+    {% endif %}
+</body>
+</html>
