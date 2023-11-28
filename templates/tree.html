@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="{{ url_for('static',filename='style.css') }}"> 
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <title>Run Python Script</title>
+</head>
+<body>
+    <div class="pose" id="pose">
+        <div class="pose-container">
+            
+            <div class="pose-img">
+                <div class="heading pose">
+                <h2>Tree Pose</h2>
+              
+                </div>
+                
+                <img src="/static/photos/tree.jpg"  alt="">
+                <div class="buttons">
+                    <form action="/run_script" method="POST">
+                        <button type="submit" class="btn1">Start</button>
+                    </form>
+                 
+                        <!-- <a href="beginner.html">
+                            <button class="btn1">Exit
+                                </a>
+                            </button> -->
+                </div>
+                
+            </div>
+       
+
+       <div class="pose-text">
+        <div class="class">
+            <!-- python script -->
+            <div class="class2">
+               
+            </div>
+
+        </div>
+            
+
+            
+
+            
+            
+        </div>
+    </div>
+
+    </div>

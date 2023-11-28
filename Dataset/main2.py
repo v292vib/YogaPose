@@ -13,12 +13,12 @@ def accuracy(angle):
    
     return acc
 
-
 import time
 from tkinter import Image
 import cv2
 import mediapipe as mp
 import numpy as np
+import pandas as pand
 #Sfrom IPython.display import display, clear_output
 
 mp_drawing = mp.solutions.drawing_utils
@@ -30,6 +30,13 @@ cap = cv2.VideoCapture(0)
 counter = 0
 acc=0
 
+data_frame=pand.read_csv('C:\\Users\\Lenovo\\Downloads\\Yogapose.csv')
+#print(data_frame)
+min1=data_frame.min()
+#abx = min1[0]
+#print(abx)
+max1=data_frame.max()
+#print(max1)
 ## Setup mediapipe instance
 with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
     while cap.isOpened():
@@ -99,7 +106,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             acc=(acc+acc1+acc2)/3
            
             # Curl counter logic
-            if (40<angle < 70 ) & (40<angler < 70 ) & (25< fangle < 80 ):
+            if (min[0]< angle <max[0] ) & (min[0]< angler <max[0] ) & (min[2]< fangle <max[2] ):
                
                  # Render detections
                 mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
@@ -113,11 +120,11 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                 #clear_output(wait=True)
        
                 cv2.imshow('Mediapipe Feed', image)
-                cv2.moveWindow('Mediapipe Feed', 700, 120)
+                cv2.moveWindow('Mediapipe Feed', 700, 100)
                 # while counter:
                 #     secs = divmod(counter, 60)
                 #     timer = '{:02d}'.format(secs)
-                #     print(timer, end="\r")q
+                #     print(timer, end="\r")
                 #     time.sleep(1)
                 #     counter -= 1
                
@@ -156,10 +163,9 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
        # clear_output(wait=True)
         #cv2.displayOverlay(Image(data=cv2.imencode('.jpg', image)[1]))
         cv2.imshow('Mediapipe Feed', image)
-        cv2.moveWindow('Mediapipe Feed', 700, 120)
+        cv2.moveWindow('Mediapipe Feed', 700, 100)
 
         if cv2.waitKey(10) & 0xFF == ord('q'):
-            
             break
        
         # for lndmrk in mp_pose.PoseLandmark:
@@ -172,7 +178,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         def calculate_angle(a,b,c):
             a = np.array(a) # First
             b = np.array(b) # Mid
-            c = np.array(c) # Endq
+            c = np.array(c) # End
    
             radians = np.arctan2(c[1]-b[1], c[0]-b[0]) - np.arctan2(a[1]-b[1], a[0]-b[0])
             angle = np.abs(radians*180.0/np.pi)
