@@ -85,44 +85,19 @@
                     <!-- login form start -->
                     <div class="form-box login">
                         <div class="logreg-title">
-                            <h2>Login</h2>
-                            <p>Please first login to the website </p>
+                        
                         </div>
-                       
+                       <section>
 
-                            <form action="/main" method="POST">
-                              
-                                <div class="input-box">
-                                    <div class="icon">
-                                        <i class='bx bxs-envelope' ></i>
-                                    </div>
-                                    
-                                    <input type="email" name="email" required>
-                                    <label for="email">Email</label>
-                                </div>
-
-                                <div class="input-box">
-                                    <div class="icon">
-                                        <i class='bx bxs-lock-alt' ></i>
-                                    </div>
-                                    
-                                    <input type="password" name="password" required>
-                                    <label for="password">Password</label>
-                                </div>
-                                <div class="remember-forgot">
-                                    <label>
-                                        <input type="checkbox">
-                                        Remember me 
-                                    </label>
-                                    <a href=url_for('forgot.php')>Forgot password ?</a>
-                                </div>
-                                <button type="submit" name="submit" class="btn">Login</button>
-                               
+                            
+                                <button type="submit" name="submit" class="btn"><a href="/profile" class="register-link">Profile</a></button>
+                            </section>
+                        <section>
+                                <button type="submit" name="submit" class="btn"><a href="/" class="register-link">Logout</a></button>
+                            </section>
                               
                                 <div class="logreg-link">
-                                    <p>Don't have an account ?
-                                        <a href="register" class="register-link">Register Now</a>
-                                    </p>
+                                    
                                 </div>
                             </form>
                     </div>
@@ -139,24 +114,7 @@
     <script src="static/main.js"></script>
     <script>
         
-const wrapper=document.querySelector('.wrapper');
-const registerLink=document.querySelector('.register-link');
-const loginLink=document.querySelector('.login-link');
-const btnpop=document.querySelector('#login-icon');
-const iconClose=document.querySelector('.icon-close');
 
-registerLink.onclick=()=>{
-    wrapper.classList.add('active');
-};
-loginLink.onclick=()=>{
-    wrapper.classList.remove('active');
-};
-btnpop.onclick=()=>{
-    wrapper.classList.add('active-popup');
-};
-iconClose.onclick=()=>{
-    wrapper.classList.remove('active-popup');
-};
 
 function form_handler(event){
     event.preventDefault()
