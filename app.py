@@ -129,7 +129,7 @@ mp_drawing = mp.solutions.drawing_utils
 
 mongo = PyMongo(app)
 
-def generate_frames():
+def generate_frames(user_email):
     while True:
         ret, frame = cap.read()
         if not ret:
@@ -183,6 +183,27 @@ def generate_frames():
                 acc = (acc0+ acc1 + acc2) / 3
                 
                 print(acc)
+                
+                if user_email:
+                    users = mongo.db.get_collection('tab')
+                    login_user = users.find_one({'email': user_email})
+
+                    if login_user:
+                        accuracies = login_user.get('accuracies', [])
+
+            # Check if 'accuracies' field exists, create it if not
+                        if 'accuracies' not in login_user:
+                            users.update_one({'email': user_email}, {"$set": {"accuracies": []}})
+                            accuracies = []
+
+            # Append the new accuracy
+                        accuracies.append(acc)
+
+            # Update the 'accuracies' field in the user document
+                        users.update_one({'email': user_email}, {"$set": {"accuracies": accuracies}})
+                        
+            #
+                
                 if (40 < angl < 70) and (40 < angler < 70) and (25 < fangle < 80):
                    
                     mp_drawing.draw_landmarks(frame, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
@@ -201,6 +222,14 @@ def generate_frames():
             # Yield the frame for streaming
             yield (b'--frame\r\n'
                     b'Content-Type: image/jpeg\r\n\r\n' + encoded_frame.tobytes() + b'\r\n')
+            
+            # After generating frames, calculate accuracy
+            # accuracy = calculate_accuracy()
+
+             # Store accuracy in MongoDB
+            
+            
+
 
 
 
@@ -246,9 +275,13 @@ def registerpage():
     return render_template('register.html')
 
 
-@app.route('/video_feed')
+@app.route('/video_feed', methods=['POST', 'GET'])
 def video_feed():
-    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    user_email = session.get('email')
+
+    # Call the generate_frames function with the user email
+    # generate_frames(user_email)
+    return Response(generate_frames(user_email), mimetype='multipart/x-mixed-replace; boundary=frame')
         
 
 # @app.route('/run_script', methods=['POST'])
