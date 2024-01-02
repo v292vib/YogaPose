@@ -139,6 +139,14 @@
     <script src="static/main.js"></script>
     <script>
         
+            let menu=document.querySelector('#menu-icon');
+            let navbar=document.querySelector('.navbar');
+             menu.onclick = () =>{
+                menu.classList.toggle('bx-x');
+                navbar.classList.toggle('open');
+    }
+        
+
 const wrapper=document.querySelector('.wrapper');
 const registerLink=document.querySelector('.register-link');
 const loginLink=document.querySelector('.login-link');

@@ -50,7 +50,7 @@
        
         <div class="icons">
             <!-- <div class="bx bx-cart" id="cart-icon"></div> -->
-            <a href="/login">
+            <a href="/logout">
                
                    <!-- <p>Login</p> -->
                     <div class='bx bx-user' id="login-icon" >
@@ -93,7 +93,7 @@
                                 <button type="submit" name="submit" class="btn"><a href="/profile" class="register-link">Profile</a></button>
                             </section>
                         <section>
-                                <button type="submit" name="submit" class="btn"><a href="/" class="register-link">Logout</a></button>
+                                <button type="submit" name="submit" class="btn"><a href="/login" class="register-link">Logout</a></button>
                             </section>
                               
                                 <div class="logreg-link">
@@ -113,6 +113,14 @@
 
     <script src="static/main.js"></script>
     <script>
+     
+            let menu=document.querySelector('#menu-icon');
+            let navbar=document.querySelector('.navbar');
+             menu.onclick = () =>{
+                menu.classList.toggle('bx-x');
+                navbar.classList.toggle('open');
+    }
+        
         
 
 

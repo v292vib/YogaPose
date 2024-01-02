@@ -120,7 +120,7 @@
                         <img src="/images/3.jpg" height="150">
                     </div>
                     <div class="info-title">
-                        <a href="/tree"><b></b></a>
+                        <a href="https://www.youngliving.com/blog/eu/en/beginners-guide-to-yoga/"><b></b>Beginners Guide</a>
                       
                     </div>
                    
@@ -135,7 +135,7 @@
                         <img src="/images/3.jpg" height="150">
                     </div>
                     <div class="info-title">
-                        <a href="/tree"><b></b></a>
+                        <a href="https://mandali.org/what-is-really-important-in-yoga/#:~:text=A%20correctly%20aligned%20pose%20will,promote%20general%20ease%20and%20comfort"><b></b>why Yoga imp?</a>
                       
                     </div>
                     
@@ -149,7 +149,7 @@
                         <img src="/images/3.jpg" height="150">
                     </div>
                     <div class="info-title">
-                        <a href="/tree"><b></b></a>
+                        <a href="https://www.webmd.com/balance/the-health-benefits-of-yoga"><b></b>Benefits</a>
                       
                     </div>
                     
@@ -177,7 +177,15 @@
         <p>Developed  </p>
  
     </div>
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="{{url_for('static',filename='main.js')}}"></script>
+    
+    <!--<script src="{{url_for('static',filename='main.js')}}"></script>-->
+    <script>
+        let menu=document.querySelector('#menu-icon');
+let navbar=document.querySelector('.navbar');
+menu.onclick = () =>{
+    menu.classList.toggle('bx-x');
+    navbar.classList.toggle('open');
+}
+</script>
 </body>
 </html>
